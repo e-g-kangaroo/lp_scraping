@@ -19,7 +19,7 @@ class Options
       option.parse! $*
       options[:id] = $*[0]
 
-      raise ArgumentError.new "\"prace id\" is required." unless options[:id]
+      raise ArgumentError.new "\"place id\" is required." unless options[:id]
       Configuration::Options.required.each do |key|
         raise ArgumentError.new "\"#{key}\" option is required." unless options[key]
       end
