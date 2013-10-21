@@ -1,0 +1,21 @@
+#!/Users/tamaki/.rbenv/shims/ruby
+
+VERSION = "0.0.1"
+
+require 'pp'
+require './config/base.rb'
+require './lib/options.rb'
+require './lib/scraping.rb'
+require './lib/url.rb'
+
+options = Options.parser
+data = []
+page = options[:page]
+
+loop do
+  tmp = Scraping.exec Url.build(options, page += 1)
+  data += tmp
+  break if tmp.empty?
+end
+
+puts "\e[34mDownloaded '#{data.length}' land prices!\e[0m"
